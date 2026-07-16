@@ -10,6 +10,7 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
+from fastapi.responses import FileResponse
 import random
 import os
 
@@ -150,9 +151,10 @@ def serialize_event(evt):
 
 # ── Endpoints ───────────────────────────────────────────────────────────────
 
+
 @app.get("/")
-def root():
-    return {"status": "ok", "service": "FinSpark Security AI API"}
+def home():
+    return FileResponse(os.path.join(web_dir, "index.html"))
 
 
 @app.get("/api/kpis")
