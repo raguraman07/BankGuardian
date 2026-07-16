@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FinSpark Security AI — Fraud & Cyber Correlation Dashboard</title>
+  <meta name="description" content="AI-powered banking security platform correlating cybersecurity telemetry with financial transactions." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%2306b6d4' d='M13 10h7l-9 13v-9H4l9-13v9z'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <!-- vis-network for correlation graph -->
+  <script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated grid background -->
+  <div class="grid-bg"></div>
+
+  <div id="app">
+    <!-- SIDEBAR -->
+    <aside id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <span class="brand-name">FinSpark</span>
+          <span class="brand-tag">Security AI</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-page="dashboard">
+          <span class="nav-icon">▦</span>
+          <span class="nav-label">Dashboard</span>
+        </button>
+        <button class="nav-item" data-page="live-monitoring">
+          <span class="nav-icon">◉</span>
+          <span class="nav-label">Live Monitoring</span>
+          <span class="nav-badge" id="alert-badge" style="display:none">0</span>
+        </button>
+        <button class="nav-item" data-page="correlation">
+          <span class="nav-icon">⬡</span>
+          <span class="nav-label">Correlation Graph</span>
+        </button>
+        <button class="nav-item" data-page="fraud">
+          <span class="nav-icon">⚠</span>
+          <span class="nav-label">Fraud Detection</span>
+        </button>
+        <button class="nav-item" data-page="threats">
+          <span class="nav-icon">🛡</span>
+          <span class="nav-label">Cyber Threats</span>
+        </button>
+        <button class="nav-item" data-page="quantum">
+          <span class="nav-icon">⚛</span>
+          <span class="nav-label">Quantum Risk</span>
+        </button>
+        <button class="nav-item" data-page="explainable-ai">
+          <span class="nav-icon">◈</span>
+          <span class="nav-label">Explainable AI</span>
+        </button>
+        <button class="nav-item" data-page="analytics">
+          <span class="nav-icon">↗</span>
+          <span class="nav-label">Analytics</span>
+        </button>
+        <button class="nav-item" data-page="reports">
+          <span class="nav-icon">≡</span>
+          <span class="nav-label">Reports</span>
+        </button>
+        <button class="nav-item" data-page="settings">
+          <span class="nav-icon">⚙</span>
+          <span class="nav-label">Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="backend-status" id="backend-status">
+          <span class="status-dot"></span>
+          <span class="status-text">Connecting...</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <div class="main-wrap">
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Search users, transactions, alerts..." />
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="clock" id="clock"></div>
+          <div class="sys-status">
+            <span class="sys-dot pulse-green"></span>
+            <span class="sys-label">All Systems Operational</span>
+          </div>
+          <button class="notif-btn" onclick="goToPage('live-monitoring')">
+            <span>🔔</span>
+            <span class="notif-badge" id="notif-count" style="display:none">0</span>
+          </button>
+          <div class="user-chip">
+            <div class="user-avatar">A</div>
+            <div>
+              <div class="user-name">Admin User</div>
+              <div class="user-role">Security Analyst</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE CONTENT -->
+      <main class="page-content" id="page-content">
+        <!-- Pages are rendered dynamically by app.js -->
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+pandas
+numpy
+faker
+networkx
+scikit-learn
+plotly
+streamlit
+shap
