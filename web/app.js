@@ -3,7 +3,7 @@
    Pure HTML/CSS/JS frontend connecting to FastAPI backend
    ============================================================ */
 
-const API = 'http://localhost:8000';
+const API = window.location.origin;
 let currentPage = 'dashboard';
 let liveData = { kpis: {}, feed: [], alerts: [], fraudTx: [], quantum: [], users: [] };
 let interceptionState = { phase: 'idle', scores: null };

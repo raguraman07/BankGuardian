@@ -83,6 +83,23 @@ You may see deprecation warnings like:
 ```
 This is harmless and doesn't affect functionality — Streamlit is just flagging an old parameter name. Safe to ignore for the hackathon demo; can be cleaned up later with a find-and-replace across the file.
 
+## Deploying on Render
+
+This project can be hosted as a single Python web service on Render. The FastAPI backend already serves the static frontend from the `/static` mount and root path.
+
+1. Create a new **Web Service** in Render and connect your Git repo.
+2. Use `python` as the environment.
+3. Set the build command to:
+```bash
+pip install -r requirements.txt
+```
+4. Set the start command to:
+```bash
+uvicorn api:app --host 0.0.0.0 --port $PORT
+```
+
+Render automatically provides the `$PORT` environment variable. The frontend will load correctly from the same host because the app uses `window.location.origin` for API calls.
+
 ## Outcome checklist (what to point to during judging)
 
 | Outcome | Where to show it |

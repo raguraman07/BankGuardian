@@ -157,6 +157,11 @@ def home():
     return FileResponse(os.path.join(web_dir, "index.html"))
 
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+
 @app.get("/api/kpis")
 def get_kpis():
     total_tx = len([e for e in state.events_history if e.get("event_type") == "transaction"])
@@ -261,6 +266,11 @@ def get_sequence_alerts():
     return state.sequence_alerts[-10:]
 
 
+@app.get("/api/sequence-alerts")
+def get_sequence_alerts():
+    return state.sequence_alerts[-10:]
+
+
 @app.get("/api/hndl-alerts")
 def get_hndl_alerts():
     alerts = []
@@ -350,4 +360,5 @@ def reset_state():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("api:app", host="0.0.0.0", port=port, reload=True)
